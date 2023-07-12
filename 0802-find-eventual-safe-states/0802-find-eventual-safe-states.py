@@ -2,6 +2,7 @@ class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
         visited = [0]*len(graph)
         safe = [0]*len(graph)
+        
         def dfs(node):
             if visited[node]:
                 return visited[node] == 2
