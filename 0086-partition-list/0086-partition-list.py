@@ -14,9 +14,13 @@ class Solution:
                 small.append(head.val)
             head = head.next
 
-        small += large
+        # small += large
         
         sol = None
+        for i in range(len(large)-1, -1, -1):
+            tmp = ListNode(val=large[i], next=sol)
+            sol = tmp
+            
         for i in range(len(small)-1, -1, -1):
             tmp = ListNode(val=small[i], next=sol)
             sol = tmp
