@@ -1,17 +1,20 @@
 class Solution:
     def minTaps(self, n: int, ranges: List[int]) -> int:
-        sol = 0
-        min_cover, max_cover = 0, 0
+        lst = sorted([[i-r, i+r] for i, r in enumerate(ranges)], key=lambda x: x[0])
         
-        while max_cover < n:
-            for idx, r in enumerate(ranges):
-                if idx-r <= min_cover and idx+r >= max_cover:
-                    max_cover = idx+r
-                    
-            if min_cover == max_cover:
+        max_cover, idx, sol = 0, 0, 0
+        while idx < len(ranges) and max_cover < n:
+            if max_cover < lst[idx][0]:
                 return -1
             
+            cur_max = lst[idx][1]
+            while idx < len(ranges) and lst[idx][0] <= max_cover:
+                cur_max = max(cur_max, lst[idx][1])
+                idx += 1
+            
+            max_cover = cur_max
             sol += 1
-            min_cover = max_cover
         
+        if max_cover < n:
+            return -1
         return sol
