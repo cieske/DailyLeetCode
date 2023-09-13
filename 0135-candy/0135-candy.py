@@ -1,5 +1,8 @@
 class Solution:
     def candy(self, ratings: List[int]) -> int:
+        if not ratings:
+            return 0
+        
         sol = [1]*len(ratings)
         
         for i in range(1, len(ratings)):
