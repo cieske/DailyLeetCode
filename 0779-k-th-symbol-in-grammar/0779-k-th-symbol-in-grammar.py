@@ -4,7 +4,7 @@ class Solution:
 
         t = 2**(n-1)
 
-        while t != 1:
+        while t > 1:
             t /= 2
 
             if k > t:
